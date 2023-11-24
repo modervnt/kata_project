@@ -217,9 +217,12 @@ func PourLesArabes(terme1 string, terme2 string, operator string) int {
 		"9":  9,
 		"10": 10,
 	}
-
+	//if ChiffreArabe[terme1] < 11 && ChiffreArabe[terme2] < 11 && 1 <= ChiffreArabe[terme2] && 1 <= ChiffreArabe[terme1] {
 	return (axuena(ChiffreArabe[terme1], ChiffreArabe[terme2], operator))
-
+	/*else {
+		fmt.Println("Error")
+		return 0
+	}*/
 }
 
 func main() {
@@ -249,8 +252,29 @@ func main() {
 	var t2 = operation[position[1]:]
 	terme2 := strings.TrimSpace(t2)
 
-	if isArabicalNumeral(terme1)*isArabicalNumeral(terme2) == 1 {
+	ChiffreArabe := map[string]int{
+
+		"1":  1,
+		"2":  2,
+		"3":  3,
+		"4":  4,
+		"5":  5,
+		"6":  6,
+		"7":  7,
+		"8":  8,
+		"9":  9,
+		"10": 10,
+	}
+	if 11 < ChiffreArabe[terme1] || 11 < ChiffreArabe[terme2] || ChiffreArabe[terme2] < 1 || ChiffreArabe[terme1] < 1 {
+		println("Error!")
+	} else if operator != "+" && operator != "-" && operator != "*" && operator != "/" {
+		println("Error!")
+	} else if isArabicalNumeral(terme1)*isArabicalNumeral(terme2) == 1 {
+		//if ChiffreArabe[terme1] < 11 && ChiffreArabe[terme2] < 11 && 1 <= ChiffreArabe[terme2] && 1 <= ChiffreArabe[terme1] {
 		println(PourLesArabes(terme1, terme2, operator))
+		/*} else if 11 < ChiffreArabe[terme1] || 11 < ChiffreArabe[terme2] || ChiffreArabe[terme2] < 1 || ChiffreArabe[terme1] < 1 {
+			println("Error!")
+		}*/
 	} else if isRomanNumeral(terme1)*isRomanNumeral(terme2) == 1 {
 		println(PourLesRomains(terme1, terme2, operator))
 	} else if isArabicalNumeral(terme1)*isRomanNumeral(terme2) == 1 || isArabicalNumeral(terme2)*isRomanNumeral(terme1) == 1 {
