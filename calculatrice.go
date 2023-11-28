@@ -252,32 +252,25 @@ func main() {
 	var t2 = operation[position[1]:]
 	terme2 := strings.TrimSpace(t2)
 
-	ChiffreArabe := map[string]int{
+	//exclusion des caractères imbéciles
 
-		"1":  1,
-		"2":  2,
-		"3":  3,
-		"4":  4,
-		"5":  5,
-		"6":  6,
-		"7":  7,
-		"8":  8,
-		"9":  9,
-		"10": 10,
-	}
-	if 11 < ChiffreArabe[terme1] || 11 < ChiffreArabe[terme2] || ChiffreArabe[terme2] < 1 || ChiffreArabe[terme1] < 1 {
-		println("Error!")
-	} else if operator != "+" && operator != "-" && operator != "*" && operator != "/" {
-		println("Error!")
-	} else if isArabicalNumeral(terme1)*isArabicalNumeral(terme2) == 1 {
-		//if ChiffreArabe[terme1] < 11 && ChiffreArabe[terme2] < 11 && 1 <= ChiffreArabe[terme2] && 1 <= ChiffreArabe[terme1] {
-		println(PourLesArabes(terme1, terme2, operator))
-		/*} else if 11 < ChiffreArabe[terme1] || 11 < ChiffreArabe[terme2] || ChiffreArabe[terme2] < 1 || ChiffreArabe[terme1] < 1 {
+	if (terme1 != "1" && terme1 != "2" && terme1 != "3" && terme1 != "4" && terme1 != "5" && terme1 != "6" && terme1 != "7" && terme1 != "8" && terme1 != "9" && terme1 != "10" && terme1 != "I" && terme1 != "II" && terme1 != "III" && terme1 != "IV" && terme1 != "V" && terme1 != "VI" && terme1 != "VII" && terme1 != "VIII" && terme1 != "IX" && terme1 != "X") || (terme2 != "1" && terme2 != "2" && terme2 != "3" && terme2 != "4" && terme2 != "5" && terme2 != "6" && terme2 != "7" && terme2 != "8" && terme2 != "9" && terme2 != "10" && terme2 != "I" && terme2 != "II" && terme2 != "III" && terme2 != "IV" && terme2 != "V" && terme2 != "VI" && terme2 != "VII" && terme2 != "VIII" && terme2 != "IX" && terme2 != "X") {
+		fmt.Println("Error!")
+	} else {
+		if isArabicalNumeral(terme1)*isArabicalNumeral(terme2) == 1 {
+			if operator != "+" && operator != "-" && operator != "*" && operator != "/" {
+				println("Error!")
+			} else {
+				println(PourLesArabes(terme1, terme2, operator))
+			}
+		} else if isRomanNumeral(terme1)*isRomanNumeral(terme2) == 1 {
+			if operator != "+" && operator != "-" && operator != "*" && operator != "/" {
+				println("Error!")
+			} else {
+				println(PourLesRomains(terme1, terme2, operator))
+			}
+		} else if isArabicalNumeral(terme1)*isRomanNumeral(terme2) == 1 || isArabicalNumeral(terme2)*isRomanNumeral(terme1) == 1 {
 			println("Error!")
-		}*/
-	} else if isRomanNumeral(terme1)*isRomanNumeral(terme2) == 1 {
-		println(PourLesRomains(terme1, terme2, operator))
-	} else if isArabicalNumeral(terme1)*isRomanNumeral(terme2) == 1 || isArabicalNumeral(terme2)*isRomanNumeral(terme1) == 1 {
-		println("Error!")
+		}
 	}
 }
